@@ -136,3 +136,18 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = 'home-index'
 
 LOGIN_URL = 'login'
+
+#Sends email through files
+#EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+#EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+#EMAIL_USE_SSL = True
+#EMAIL_PORT = 465
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'inblazar.skype@gmail.com'
+EMAIL_HOST_PASSWORD = 'amarillo27'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

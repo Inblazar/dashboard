@@ -48,14 +48,14 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model=User
-        fields = ('username', 'email','password1', 'password2')
+        fields = ('email','password1', 'password2')
+        #exclude = ('username',)
 
     def clean_email(self):
         print('email')
         email = self.cleaned_data.get('email')
         print('previo a checking email ',email)
-        mail_checked = User.objects.get(email = email)
-        #mail_checked = User.objects.filter(email = email)
+        mail_checked = User.objects.filter(email = email)
         print("mail checked ",mail_checked)
         if mail_checked:
             print('verdadero')

@@ -49,9 +49,18 @@ def register(request):
         print("los errores ", form.errors)
         if form.is_valid():
             print("Es valido")
-            form.save()
-            username = form.cleaned_data.get('email')
-            messages.success(request,f'Account created for {username}!')
+            email = form.cleaned_data.get('email')
+            print(email, type(email))
+            #form.save()
+            instance = form.save(commit=False)
+            user = email.split('@')
+            user_second_part = user[1].split('.')[0]
+
+            final_user = user[0] + '_' + user_second_part
+            print("Nombre de usuario ",final_user)
+            instance.username = final_user
+            instance.save()
+            #messages.success(request,f'Account created for {email}!')
             return redirect('login')
         print("PWEWENGREONEIH")
     else:
